@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "app/api/chat/route.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "app/api/voices/route.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  }
+}

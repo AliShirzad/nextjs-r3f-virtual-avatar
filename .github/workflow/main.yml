@@ -1,0 +1,30 @@
+name: Deploy to Remote Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to server
+        uses: easingthemes/ssh-deploy@v2.1.5
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-public-key: ${{ secrets.SSH_PUBLIC_KEY }}
+          server: ${{ secrets.SERVER }}
+          username: ${{ secrets.USERNAME }}
+          local-path: ./build/
+          remote-path: /var/www/html/
