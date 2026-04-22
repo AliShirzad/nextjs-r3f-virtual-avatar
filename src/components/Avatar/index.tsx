@@ -36,10 +36,10 @@ export type GLTFResult = GLTF & {
   };
 };
 
-export function Avatar(props: JSX.IntrinsicElements["group"]) {
+export function Avatar(props: React.JSX.IntrinsicElements["group"]) {
   const { nodes, materials, scene } = useGLTF(
     "/models/65b162feb1d5798fea2a8200.glb"
-  ) as GLTFResult;
+  ) as unknown as GLTFResult;
 
   useData({ nodes, scene });
 

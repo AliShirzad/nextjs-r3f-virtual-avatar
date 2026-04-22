@@ -9,7 +9,7 @@ export const UI = ({ hidden, ...props }: any) => {
     const text = input.current?.value;
     if (!loading && !message && text) {
       chat(text);
-      input.current.value = "";
+      input.current!.value = "";
     }
   };
   if (hidden) {
