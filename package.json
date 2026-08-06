@@ -27,12 +27,14 @@
   "engines": {
     "node": ">=20"
   },
+  "packageManager": "pnpm@10.20.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test src/lib/lipsync.test.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.8",
@@ -69,6 +71,7 @@
     "eslint-config-next": "15.5.23",
     "postcss": "^8.5.23",
     "tailwindcss": "^3.3.0",
+    "tsx": "^4.23.9",
     "typescript": "^5"
   }
 }

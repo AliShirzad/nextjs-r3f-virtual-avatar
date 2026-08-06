@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { GLTFResult } from ".";
 import { facialExpressions } from "@/constants/facialExpressions";
 import { corresponding } from "@/constants/corresponding";
+import { visemeAt } from "@/lib/lipsync";
 import { button, useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
 
@@ -22,7 +23,6 @@ export function useData({
   const [lipsync, setLipsync] = useState<IMessage["lipsync"] | null>(null);
 
   useEffect(() => {
-    console.log(message);
     if (!message) {
       setAnimation("Idle");
       return;
@@ -112,19 +112,12 @@ export function useData({
         return;
       }
 
-      const appliedMorphTargets: any[] = [];
+      const appliedMorphTargets: string[] = [];
       if (message && lipsync && audio) {
-        const currentAudioTime = audio.currentTime;
-        for (let i = 0; i < lipsync.mouthCues?.length; i++) {
-          const mouthCue = lipsync.mouthCues[i];
-          if (
-            currentAudioTime >= mouthCue.start &&
-            currentAudioTime <= mouthCue.end
-          ) {
-            appliedMorphTargets.push(corresponding[mouthCue.value]);
-            lerpMorphTarget(corresponding[mouthCue.value], 1, 0.2);
-            break;
-          }
+        const viseme = visemeAt(lipsync.mouthCues, audio.currentTime);
+        if (viseme) {
+          appliedMorphTargets.push(viseme);
+          lerpMorphTarget(viseme, 1, 0.2);
         }
       }
 
