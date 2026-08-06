@@ -1,56 +1,73 @@
 {
-  "name": "edoramedia",
+  "name": "nextjs-r3f-virtual-avatar",
   "version": "0.1.0",
   "private": true,
+  "description": "A browser-based 3D virtual avatar that speaks with viseme-driven lipsync and blendshape facial expressions, built with Next.js and React Three Fiber.",
+  "author": "Ali Shirzad",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliShirzad/nextjs-r3f-virtual-avatar.git"
+  },
+  "homepage": "https://github.com/AliShirzad/nextjs-r3f-virtual-avatar#readme",
+  "bugs": {
+    "url": "https://github.com/AliShirzad/nextjs-r3f-virtual-avatar/issues"
+  },
+  "keywords": [
+    "nextjs",
+    "react-three-fiber",
+    "threejs",
+    "webgl",
+    "avatar",
+    "lipsync",
+    "visemes",
+    "elevenlabs",
+    "text-to-speech"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.6.0",
-    "@types/three": "^0.184.0",
-    "@vercel/blob": "^0.19.0",
-    "elevenlabs-node": "^2.0.3",
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
     "leva": "^0.10.1",
-    "next": "15.5.15",
+    "next": "15.5.23",
     "react": "^19",
     "react-dom": "^19",
     "three": "^0.184.0",
     "three-stdlib": "^2.36.1"
   },
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ],
     "overrides": {
-      "undici@<6.23.0": "^6.23.0",
-      "axios@<1.12.0": "^1.12.0",
-      "form-data@>=4.0.0 <4.0.4": "^4.0.4",
-      "brace-expansion@>=1.0.0 <1.1.12": "^1.1.12",
-      "brace-expansion@>=2.0.0 <2.0.2": "^2.0.2",
-      "js-yaml@>=4.0.0 <4.1.1": "^4.1.1",
-      "glob@>=10.2.0 <10.5.0": "^10.5.0",
-      "ajv@<6.14.0": "^6.14.0",
-      "minimatch@>=9.0.0 <9.0.6": "^9.0.6",
-      "minimatch@>=3.0.0 <3.1.3": "^3.1.3",
-      "flatted@<3.4.0": "^3.4.0",
-      "yaml@>=2.0.0 <2.8.3": "^2.8.3",
-      "picomatch@<2.3.2": "^2.3.2",
-      "follow-redirects@<1.16.0": "^1.16.0",
-      "braces@<3.0.3": "^3.0.3",
-      "cross-spawn@>=7.0.0 <7.0.5": "^7.0.5",
-      "nanoid@<3.3.8": "^3.3.8",
-      "@babel/runtime@<7.26.10": "^7.26.10"
+      "postcss@<8.5.23": "^8.5.23",
+      "js-yaml@>=4.0.0 <4.3.0": "^4.3.0",
+      "brace-expansion@<1.1.16": "^1.1.16",
+      "brace-expansion@>=2.0.0 <2.1.4": "^2.1.4",
+      "brace-expansion@>=3.0.0 <5.0.7": "^5.0.7",
+      "micromatch@<4.0.8": "^4.0.8",
+      "minimatch@>=9.0.0 <9.0.7": "^9.0.7",
+      "sharp@<0.35.0": "^0.35.3"
     }
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.184.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^9",
-    "eslint-config-next": "15.5.15",
-    "postcss": "^8",
+    "eslint-config-next": "15.5.23",
+    "postcss": "^8.5.23",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
