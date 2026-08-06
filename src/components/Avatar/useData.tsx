@@ -39,18 +39,25 @@ export function useData({
 
   const { animations } = useGLTF("/models/animations.glb");
 
-  const group = useRef(null);
+  // Returned to the caller, which must attach it to the group wrapping the
+  // skeleton — useAnimations binds the mixer to whatever this ref holds, so
+  // an unattached ref silently animates nothing.
+  const group = useRef<THREE.Group>(null);
   const { actions, mixer } = useAnimations(animations, group);
   const [animation, setAnimation] = useState(
     animations.find((a) => a.name === "Idle") ? "Idle" : animations[0].name // Check if Idle animation exists otherwise use first animation
   );
-  // useEffect(() => {
-  //   actions[animation]
-  //     ?.reset()
-  //     .fadeIn(mixer.stats.actions.inUse === 0 ? 0 : 0.5)
-  //     .play();
-  //   return () => actions[animation]?.fadeOut(0.5);
-  // }, [animation]);
+
+  useEffect(() => {
+    const action = actions[animation];
+    if (!action) return;
+    // Cut straight in on the very first clip, cross-fade after that.
+    action.reset().fadeIn(mixer.stats.actions.inUse === 0 ? 0 : 0.5).play();
+    return () => {
+      action.fadeOut(0.5);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animation, actions]);
 
   const lerpMorphTarget = (target: string, value: any, speed = 0.1) => {
     scene.traverse((child) => {
@@ -211,4 +218,6 @@ export function useData({
     nextBlink();
     return () => clearTimeout(blinkTimeout);
   }, []);
+
+  return { group };
 }

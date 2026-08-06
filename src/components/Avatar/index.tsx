@@ -41,10 +41,10 @@ export function Avatar(props: React.JSX.IntrinsicElements["group"]) {
     "/models/65b162feb1d5798fea2a8200.glb"
   ) as unknown as GLTFResult;
 
-  useData({ nodes, scene });
+  const { group } = useData({ nodes, scene });
 
   return (
-    <group {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null}>
       <primitive object={nodes.Hips} />
       <skinnedMesh
         name="EyeLeft"
